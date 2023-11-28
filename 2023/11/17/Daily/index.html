@@ -1,0 +1,945 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Leetcode049 字母异位词分组利用 stream 的 groupingBy 算子 1234567891011121314151617181920212223242526272829    &#x2F;**     * 给你一个字符串数组，请你将 字母异位词 组合在一起。可以按任意顺序返回结果列表。     * 字母异位词 是由重新排列源单词的所有字母得到的一个新单词。     *      * 示例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2023/11/17/Daily/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Leetcode049 字母异位词分组利用 stream 的 groupingBy 算子 1234567891011121314151617181920212223242526272829    &#x2F;**     * 给你一个字符串数组，请你将 字母异位词 组合在一起。可以按任意顺序返回结果列表。     * 字母异位词 是由重新排列源单词的所有字母得到的一个新单词。     *      * 示例">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-11-17T08:24:38.796Z">
+<meta property="article:modified_time" content="2023-11-28T09:01:47.776Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-11-17 16:24" pubdate>
+          2023年11月17日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          71 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h4 id="Leetcode049-字母异位词分组"><a href="#Leetcode049-字母异位词分组" class="headerlink" title="Leetcode049 字母异位词分组"></a>Leetcode049 字母异位词分组</h4><p>利用 stream 的 <code>groupingBy</code> 算子</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs java">    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 给你一个字符串数组，请你将 字母异位词 组合在一起。可以按任意顺序返回结果列表。</span><br><span class="hljs-comment">     * 字母异位词 是由重新排列源单词的所有字母得到的一个新单词。</span><br><span class="hljs-comment">     * </span><br><span class="hljs-comment">     * 示例 1:</span><br><span class="hljs-comment">     * 输入: strs = [&quot;eat&quot;, &quot;tea&quot;, &quot;tan&quot;, &quot;ate&quot;, &quot;nat&quot;, &quot;bat&quot;]</span><br><span class="hljs-comment">     * 输出: [[&quot;bat&quot;],[&quot;nat&quot;,&quot;tan&quot;],[&quot;ate&quot;,&quot;eat&quot;,&quot;tea&quot;]]</span><br><span class="hljs-comment">     * </span><br><span class="hljs-comment">     * 示例 2:</span><br><span class="hljs-comment">     * 输入: strs = [&quot;&quot;]</span><br><span class="hljs-comment">     * 输出: [[&quot;&quot;]]</span><br><span class="hljs-comment">     * </span><br><span class="hljs-comment">     * 示例 3:</span><br><span class="hljs-comment">     * 输入: strs = [&quot;a&quot;]</span><br><span class="hljs-comment">     * 输出: [[&quot;a&quot;]]</span><br><span class="hljs-comment">     * </span><br><span class="hljs-comment">     */</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> List&lt;List&lt;String&gt;&gt; <span class="hljs-title function_">groupAnagrams</span><span class="hljs-params">(String[] strs)</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;(Arrays.stream(strs)<br>            .collect(Collectors.groupingBy(str -&gt; &#123;<br>                <span class="hljs-comment">// 返回 str 排序后的结果。</span><br>                <span class="hljs-comment">// 按排序后的结果来grouping by，算子类似于 sql 里的 group by。</span><br>                <span class="hljs-type">char</span>[] array = str.toCharArray();<br>                Arrays.sort(array);<br>                <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(array);<br>            &#125;)).values());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>groupingby</code>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//按照长度分组</span><br>List&lt;String&gt; strings = Arrays.asList(<span class="hljs-string">&quot;aa&quot;</span>, <span class="hljs-string">&quot;bbb&quot;</span>, <span class="hljs-string">&quot;ccc&quot;</span>, <span class="hljs-string">&quot;dddd&quot;</span>);<br>Map&lt;Integer, List&lt;String&gt;&gt; result = strings.stream().collect(groupingBy(String::length));<br><br>System.out.println(result);<span class="hljs-comment">//&#123;2=[aa], 3=[bbb, ccc], 4=[dddd]&#125;</span><br>System.out.println(result.values());<span class="hljs-comment">//[[aa], [bbb, ccc], [dddd]] value()生成的是一个collector</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="LeetCode152-乘积最大的数组"><a href="#LeetCode152-乘积最大的数组" class="headerlink" title="LeetCode152 乘积最大的数组"></a>LeetCode152 乘积最大的数组</h3><p>给你一个整数数组 <code>nums</code> ，请你找出数组中乘积最大的非空连续子数组（该子数组中至少包含一个数字），并返回该子数组所对应的乘积。</p>
+<p>测试用例的答案是一个 <strong>32-位</strong> 整数。</p>
+<p><strong>子数组</strong> 是数组的连续子序列。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">输入: nums = [2,3,-2,4]</span><br><span class="hljs-section">输出: 6</span><br><span class="hljs-section">解释: 子数组 [2,3] 有最大乘积 6。</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs subunit">输入: nums = [<span class="hljs-string">-2</span>,0,<span class="hljs-string">-1</span>]<br>输出: 0<br>解释: 结果不能为 2, 因为 [<span class="hljs-string">-2</span>,<span class="hljs-string">-1</span>] 不是子数组。<br></code></pre></td></tr></table></figure>
+
+<h3 id="LeetCode334-递增的三元子序列"><a href="#LeetCode334-递增的三元子序列" class="headerlink" title="LeetCode334 递增的三元子序列"></a>LeetCode334 递增的三元子序列</h3><p>给你一个整数数组 <code>nums</code> ，判断这个数组中是否存在长度为 <code>3</code> 的递增子序列。</p>
+<p>如果存在这样的三元组下标 <code>(i, j, k)</code> 且满足 <code>i &lt; j &lt; k</code> ，使得 <code>nums[i] &lt; nums[j] &lt; nums[k]</code> ，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
+<p> <strong>示例 1：</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus">输入：nums = <span class="hljs-selector-attr">[1,2,3,4,5]</span><br>输出：true<br>解释：任何 <span class="hljs-selector-tag">i</span> &lt; j &lt; k 的三元组都满足题意<br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入：<span class="hljs-attr">nums</span> = [<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>]<br>输出：<span class="hljs-literal">false</span><br>解释：不存在满足题意的三元组<br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：nums = <span class="hljs-comment">[2,1,5,0,4,6]</span><br>输出：true<br>解释：三元组 (3, 4, 5) 满足题意，因为 nums<span class="hljs-comment">[3]</span> == 0 &lt; nums<span class="hljs-comment">[4]</span> == 4 &lt; nums<span class="hljs-comment">[5]</span> == 6<br></code></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 5 * 105</code></li>
+<li><code>-231 &lt;= nums[i] &lt;= 231 - 1</code></li>
+</ul>
+<ol>
+<li>转化为<em><strong>求 nums 的最长上升子序列</strong></em></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//LeetCode300最长递增子序列</span><br><span class="hljs-comment">//解法一：动态规划</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">lengthOfLIS</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> &#123;<br>    <span class="hljs-keyword">if</span>(nums.length == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span>[] dp = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[nums.length];<br>    <span class="hljs-type">int</span> <span class="hljs-variable">res</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    Arrays.fill(dp, <span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; nums.length; i++) &#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt; i; j++) &#123;<br>            <span class="hljs-keyword">if</span>(nums[j] &lt; nums[i]) dp[i] = Math.max(dp[i], dp[j] + <span class="hljs-number">1</span>);<br>        &#125;<br>        res = Math.max(res, dp[i]);<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br><span class="hljs-comment">//解法二：动态规划 + 二分查找</span><br><span class="hljs-comment">// Dynamic programming + Dichotomy.</span><br><span class="hljs-comment">//TODO </span><br><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">lengthOfLIS</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> &#123;<br>    <span class="hljs-type">int</span>[] tails = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[nums.length];<br>    <span class="hljs-type">int</span> <span class="hljs-variable">res</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> num : nums) &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>, j = res;<br>        <span class="hljs-keyword">while</span>(i &lt; j) &#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">m</span> <span class="hljs-operator">=</span> (i + j) / <span class="hljs-number">2</span>;<br>            <span class="hljs-keyword">if</span>(tails[m] &lt; num) i = m + <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">else</span> j = m;<br>        &#125;<br>        tails[i] = num;<br>        <span class="hljs-keyword">if</span>(res == j) res++;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>直接求</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">increasingTriplet</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">one</span> <span class="hljs-operator">=</span> Integer.MAX_VALUE,two = Integer.MAX_VALUE;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> three : nums)&#123;<br>            <span class="hljs-keyword">if</span>(three &gt; two) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(three &lt;= one) one = three;<br>            <span class="hljs-keyword">else</span> two = three;<br>            <span class="hljs-comment">// if(three &gt; one &amp;&amp; three &lt; two) two = three;</span><br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>&#125;<br><br>作者：Xzz<br>链接：https:<span class="hljs-comment">//leetcode.cn/problems/increasing-triplet-subsequence/</span><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。<br></code></pre></td></tr></table></figure>
+
+<h3 id="LeetCode260-只出现一次的数字III"><a href="#LeetCode260-只出现一次的数字III" class="headerlink" title="LeetCode260 只出现一次的数字III"></a>LeetCode260 只出现一次的数字III</h3><p>给你一个整数数组 <code>nums</code>，其中恰好有两个元素只出现一次，其余所有元素均出现两次。 找出只出现一次的那两个元素。你可以按 <strong>任意顺序</strong> 返回答案。</p>
+<p>你必须设计并实现线性时间复杂度的算法且仅使用常量额外空间来解决此问题。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：nums = <span class="hljs-comment">[1,2,1,3,2,5]</span><br>输出：<span class="hljs-comment">[3,5]</span><br>解释：<span class="hljs-comment">[5, 3]</span> 也是有效的答案。<br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：nums = <span class="hljs-comment">[-1,0]</span><br>输出：<span class="hljs-comment">[-1,0]</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：nums = <span class="hljs-comment">[0,1]</span><br>输出：<span class="hljs-comment">[1,0]</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= nums.length &lt;= 3 * 104</code></li>
+<li><code>-231 &lt;= nums[i] &lt;= 231 - 1</code></li>
+<li>除两个只出现一次的整数外，<code>nums</code> 中的其他数字都出现两次</li>
+</ul>
+<ol>
+<li>哈希表 注意getOrDefault的使用</li>
+<li>异或</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span>[] singleNumber(<span class="hljs-type">int</span>[] nums) &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i : nums) sum ^= i;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">k</span> <span class="hljs-operator">=</span> -<span class="hljs-number">1</span>;<br>        <span class="hljs-comment">//找到最小的1</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">31</span>; i &gt;= <span class="hljs-number">0</span> &amp;&amp; k == -<span class="hljs-number">1</span>; i--) &#123;<br>            <span class="hljs-keyword">if</span> (((sum &gt;&gt; i) &amp; <span class="hljs-number">1</span>) == <span class="hljs-number">1</span>) k = i;<br>        &#125;<br>        <span class="hljs-type">int</span>[] ans = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">2</span>];<br>        <span class="hljs-comment">//通过最小的一位将nums分为两类，在两个类中分别求异或</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i : nums) &#123;<br>            <span class="hljs-keyword">if</span> (((i &gt;&gt; k) &amp; <span class="hljs-number">1</span>) == <span class="hljs-number">1</span>) ans[<span class="hljs-number">1</span>] ^= i;<br>            <span class="hljs-keyword">else</span> ans[<span class="hljs-number">0</span>] ^= i;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="LeetCode114-二叉树展开为链表"><a href="#LeetCode114-二叉树展开为链表" class="headerlink" title="LeetCode114 二叉树展开为链表"></a>LeetCode114 二叉树展开为链表</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//先序遍历迭代法一</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">preOrderStack</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) &#123; <br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    Stack&lt;TreeNode&gt; s = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Stack</span>&lt;TreeNode&gt;();<br>    <span class="hljs-keyword">while</span> (root != <span class="hljs-literal">null</span> || !s.isEmpty()) &#123;<br>        <span class="hljs-keyword">while</span> (root != <span class="hljs-literal">null</span>) &#123;<br>            System.out.println(root.val);<br>            s.push(root);<br>            root = root.left;<br>        &#125;<br>        root = s.pop();<br>        root = root.right;<br>    &#125;<br>&#125;<br><span class="hljs-comment">//先序遍历迭代法二</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">preOrderStack</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>)&#123;<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    Stack&lt;TreeNode&gt; s = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Stack</span>&lt;TreeNode&gt;();<br>    s.push(root);<br>    <span class="hljs-keyword">while</span> (!s.isEmpty()) &#123;<br>        <span class="hljs-type">TreeNode</span> <span class="hljs-variable">temp</span> <span class="hljs-operator">=</span> s.pop();<br>        System.out.println(temp.val);<br>        <span class="hljs-keyword">if</span> (temp.right != <span class="hljs-literal">null</span>)&#123;<br>            s.push(temp.right);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (temp.left != <span class="hljs-literal">null</span>)&#123;<br>            s.push(temp.left);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="LeetCode033-搜索旋转排序数组"><a href="#LeetCode033-搜索旋转排序数组" class="headerlink" title="LeetCode033 搜索旋转排序数组"></a>LeetCode033 搜索旋转排序数组</h3><h3 id="LeetCode394-字符串解码"><a href="#LeetCode394-字符串解码" class="headerlink" title="LeetCode394 字符串解码"></a>LeetCode394 字符串解码</h3><p>给定一个经过编码的字符串，返回它解码后的字符串。</p>
+<p>编码规则为: <code>k[encoded_string]</code>，表示其中方括号内部的 <code>encoded_string</code> 正好重复 <code>k</code> 次。注意 <code>k</code> 保证为正整数。</p>
+<p>你可以认为输入字符串总是有效的；输入字符串中没有额外的空格，且输入的方括号总是符合格式要求的。<br>此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 <code>k</code> ，例如不会出现像 <code>3a</code> 或 <code>2[4]</code> 的输入。</p>
+<p><strong>示例 1</strong></p>
+<p><strong>输入：</strong> s &#x3D; “3[a]2[bc]”<br><strong>输出：</strong>“aaabcbc”</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入：</strong> s &#x3D; “3[a2[c]]”<br><strong>输出：</strong>“accaccacc”</p>
+<p><strong>示例 3：</strong></p>
+<p><strong>输入：</strong> s &#x3D; “2[abc]3[cd]ef”<br><strong>输出：</strong>“abcabccdcdcdef”</p>
+<p><strong>示例 4：</strong></p>
+<p><strong>输入：</strong> s &#x3D; “abc3[cd]xyz”<br><strong>输出：</strong>“abccdcdcdxyz”</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 30</code></li>
+<li><code>s</code> 由小写英文字母、数字和方括号 <code>&#39;[]&#39;</code> 组成</li>
+<li><code>s</code> 保证是一个 <strong>有效</strong> 的输入。</li>
+<li><code>s</code> 中所有整数的取值范围为 <code>[1, 300]</code></li>
+</ul>
+<p>题目类型：栈</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> String <span class="hljs-title function_">decodeString</span><span class="hljs-params">(String s)</span> &#123;  <br>    <span class="hljs-type">int</span> <span class="hljs-variable">len</span> <span class="hljs-operator">=</span> s.length();  <br>    <span class="hljs-type">String</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;</span>;  <br>    LinkedList&lt;Character&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;&gt;();  <br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; len; i++) &#123;  <br>        <span class="hljs-keyword">if</span> (s.charAt(i) &lt;= <span class="hljs-string">&#x27;z&#x27;</span> &amp;&amp; s.charAt(i) &gt;= <span class="hljs-string">&#x27;a&#x27;</span>) &#123;  <br>            <span class="hljs-keyword">if</span> (list.isEmpty()) &#123;  <br>                result += s.charAt(i);  <br>            &#125; <span class="hljs-keyword">else</span> &#123;  <br>                list.add(s.charAt(i));  <br>            &#125;  <br>        &#125; <span class="hljs-keyword">else</span> &#123;  <br>            <span class="hljs-keyword">if</span> (s.charAt(i) != <span class="hljs-string">&#x27;]&#x27;</span>) &#123;  <br>                list.add(s.charAt(i));  <br>            &#125; <span class="hljs-keyword">else</span> &#123;  <br>                <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">builder</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();  <br>                <span class="hljs-keyword">while</span> (list.getLast() != <span class="hljs-string">&#x27;[&#x27;</span>) &#123;  <br>                    builder.append(list.removeLast());  <br>                &#125;  <br>                list.removeLast();  <br>                builder.reverse();  <br>                <span class="hljs-type">String</span> <span class="hljs-variable">str1</span> <span class="hljs-operator">=</span> builder.toString();  <br>                <span class="hljs-type">int</span> <span class="hljs-variable">temp</span> <span class="hljs-operator">=</span> list.removeLast() - <span class="hljs-string">&#x27;0&#x27;</span>;  <br>                <span class="hljs-type">int</span> <span class="hljs-variable">index</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;  <br>                <span class="hljs-keyword">if</span> (!list.isEmpty())&#123;  <br>                    <span class="hljs-keyword">while</span> (!list.isEmpty()&amp;&amp;list.getLast() &gt;= <span class="hljs-string">&#x27;0&#x27;</span> &amp;&amp; list.getLast() &lt;= <span class="hljs-string">&#x27;9&#x27;</span>)&#123;  <br>                        temp = (<span class="hljs-type">int</span>) ((list.removeLast() - <span class="hljs-string">&#x27;0&#x27;</span>) * Math.pow(<span class="hljs-number">10</span>, index) + temp);  <br>                        index++;  <br>                    &#125;  <br>                &#125;  <br>                <span class="hljs-type">String</span> <span class="hljs-variable">str2</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;</span>;  <br>                <span class="hljs-keyword">while</span> (temp &gt; <span class="hljs-number">0</span>) &#123;  <br>                    str2 += str1;  <br>                    temp--;  <br>                &#125;  <br>                <span class="hljs-keyword">if</span> (list.isEmpty())&#123;  <br>                    result += str2;  <br>                &#125; <span class="hljs-keyword">else</span> &#123;  <br>                    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt; str2.length(); j++) &#123;  <br>                        list.add(str2.charAt(j));  <br>                    &#125;  <br>                &#125;  <br>            &#125;  <br>        &#125;  <br>    &#125;  <br>    <span class="hljs-keyword">return</span> result;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<p>LinkedList常用方法：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public boolean add(E e)</td>
+<td>链表末尾添加元素，返回是否成功，成功为 true，失败为 false。</td>
+</tr>
+<tr>
+<td>public void add(int index, E element)</td>
+<td>向指定位置插入元素。</td>
+</tr>
+<tr>
+<td>public boolean addAll(Collection c)</td>
+<td>将一个集合的所有元素添加到链表后面，返回是否成功，成功为 true，失败为 false。</td>
+</tr>
+<tr>
+<td>public boolean addAll(int index, Collection c)</td>
+<td>将一个集合的所有元素添加到链表的指定位置后面，返回是否成功，成功为 true，失败为 false。</td>
+</tr>
+<tr>
+<td>public void addFirst(E e)</td>
+<td>元素添加到头部。</td>
+</tr>
+<tr>
+<td>public void addLast(E e)</td>
+<td>元素添加到尾部。</td>
+</tr>
+<tr>
+<td>public boolean offer(E e)</td>
+<td>向链表末尾添加元素，返回是否成功，成功为 true，失败为 false。</td>
+</tr>
+<tr>
+<td>public boolean offerFirst(E e)</td>
+<td>头部插入元素，返回是否成功，成功为 true，失败为 false。</td>
+</tr>
+<tr>
+<td>public boolean offerLast(E e)</td>
+<td>尾部插入元素，返回是否成功，成功为 true，失败为 false。</td>
+</tr>
+<tr>
+<td>public void clear()</td>
+<td>清空链表。</td>
+</tr>
+<tr>
+<td>public E removeFirst()</td>
+<td>删除并返回第一个元素。</td>
+</tr>
+<tr>
+<td>public E removeLast()</td>
+<td>删除并返回最后一个元素。</td>
+</tr>
+<tr>
+<td>public boolean remove(Object o)</td>
+<td>删除某一元素，返回是否成功，成功为 true，失败为 false。</td>
+</tr>
+<tr>
+<td>public E remove(int index)</td>
+<td>删除指定位置的元素。</td>
+</tr>
+<tr>
+<td>public E poll()</td>
+<td>删除并返回第一个元素。</td>
+</tr>
+<tr>
+<td>public E remove()</td>
+<td>删除并返回第一个元素。</td>
+</tr>
+<tr>
+<td>public boolean contains(Object o)</td>
+<td>判断是否含有某一元素。</td>
+</tr>
+<tr>
+<td>public E get(int index)</td>
+<td>返回指定位置的元素。</td>
+</tr>
+<tr>
+<td>public E getFirst()</td>
+<td>返回第一个元素。</td>
+</tr>
+<tr>
+<td>public E getLast()</td>
+<td>返回最后一个元素。</td>
+</tr>
+<tr>
+<td>public int indexOf(Object o)</td>
+<td>查找指定元素从前往后第一次出现的索引。</td>
+</tr>
+<tr>
+<td>public int lastIndexOf(Object o)</td>
+<td>查找指定元素最后一次出现的索引。</td>
+</tr>
+<tr>
+<td>public E peek()</td>
+<td>返回第一个元素。</td>
+</tr>
+<tr>
+<td>public E element()</td>
+<td>返回第一个元素。</td>
+</tr>
+<tr>
+<td>public E peekFirst()</td>
+<td>返回头部元素。</td>
+</tr>
+<tr>
+<td>public E peekLast()</td>
+<td>返回尾部元素。</td>
+</tr>
+<tr>
+<td>public E set(int index, E element)</td>
+<td>设置指定位置的元素。</td>
+</tr>
+<tr>
+<td>public Object clone()</td>
+<td>克隆该列表。</td>
+</tr>
+<tr>
+<td>public Iterator descendingIterator()</td>
+<td>返回倒序迭代器。</td>
+</tr>
+<tr>
+<td>public int size()</td>
+<td>返回链表元素个数。</td>
+</tr>
+<tr>
+<td>public ListIterator listIterator(int index)</td>
+<td>返回从指定位置开始到末尾的迭代器。</td>
+</tr>
+<tr>
+<td>public Object[] toArray()</td>
+<td>返回一个由链表元素组成的数组。</td>
+</tr>
+<tr>
+<td>public T[] toArray(T[] a)</td>
+<td>返回一个由链表元素转换类型而成的数组。</td>
+</tr>
+</tbody></table>
+<p>StringBuilder常用方法：</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>方法描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>public StringBuffer append(String s)  <br>将指定的字符串追加到此字符序列。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>public StringBuffer reverse()  <br> 将此字符序列用其反转形式取代。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>public delete(int start, int end)  <br>移除此序列的子字符串中的字符。</td>
+</tr>
+<tr>
+<td>4</td>
+<td>public insert(int offset, int i)  <br>将 <code>int</code> 参数的字符串表示形式插入此序列中。</td>
+</tr>
+<tr>
+<td>5</td>
+<td>insert(int offset, String str)  <br>将 <code>str</code> 参数的字符串插入此序列中。</td>
+</tr>
+<tr>
+<td>6</td>
+<td>replace(int start, int end, String str)  <br>使用给定 <code>String</code> 中的字符替换此序列的子字符串中的字符。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>方法描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>int capacity()  <br>返回当前容量。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>char charAt(int index)  <br>返回此序列中指定索引处的 <code>char</code> 值。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>void ensureCapacity(int minimumCapacity)  <br>确保容量至少等于指定的最小值。</td>
+</tr>
+<tr>
+<td>4</td>
+<td>void getChars(int srcBegin, int srcEnd, char[] dst, int dstBegin)  <br>将字符从此序列复制到目标字符数组 <code>dst</code>。</td>
+</tr>
+<tr>
+<td>5</td>
+<td>int indexOf(String str)  <br>返回第一次出现的指定子字符串在该字符串中的索引。</td>
+</tr>
+<tr>
+<td>6</td>
+<td>int indexOf(String str, int fromIndex)  <br>从指定的索引处开始，返回第一次出现的指定子字符串在该字符串中的索引。</td>
+</tr>
+<tr>
+<td>7</td>
+<td>int lastIndexOf(String str)  <br>返回最右边出现的指定子字符串在此字符串中的索引。</td>
+</tr>
+<tr>
+<td>8</td>
+<td>int lastIndexOf(String str, int fromIndex)  <br>返回 String 对象中子字符串最后出现的位置。</td>
+</tr>
+<tr>
+<td>9</td>
+<td>int length()  <br> 返回长度（字符数）。</td>
+</tr>
+<tr>
+<td>10</td>
+<td>void setCharAt(int index, char ch)  <br>将给定索引处的字符设置为 <code>ch</code>。</td>
+</tr>
+<tr>
+<td>11</td>
+<td>void setLength(int newLength)  <br>设置字符序列的长度。</td>
+</tr>
+<tr>
+<td>12</td>
+<td>CharSequence subSequence(int start, int end)  <br>返回一个新的字符序列，该字符序列是此序列的子序列。</td>
+</tr>
+<tr>
+<td>13</td>
+<td>String substring(int start)  <br>返回一个新的 <code>String</code>，它包含此字符序列当前所包含的字符子序列。</td>
+</tr>
+<tr>
+<td>14</td>
+<td>String substring(int start, int end)  <br>返回一个新的 <code>String</code>，它包含此序列当前所包含的字符子序列。</td>
+</tr>
+<tr>
+<td>15</td>
+<td>String toString()  <br>返回此序列中数据的字符串表示形式</td>
+</tr>
+</tbody></table>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2023/11/17/Daily/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年11月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/11/17/Summary/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/11/17/ShardingSphere5/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
