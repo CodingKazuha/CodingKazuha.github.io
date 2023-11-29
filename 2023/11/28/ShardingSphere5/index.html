@@ -13,51 +13,53 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="kazuha">
   <meta name="keywords" content="">
   
     <meta name="description" content="第01章 高性能架构模式互联网业务兴起之后，海量用户加上海量数据的特点，单个数据库服务器已经难以满足业务需要，必须考虑数据库集群的方式来提升性能。高性能数据库集群的第一种方式是“读写分离”，第二种方式是“数据库分片” 1、读写分离架构读写分离原理：读写分离的基本原理是将数据库读写操作分散到不同的节点上，下面是其基本架构图：  读写分离的基本实现：  主库负责处理事务性的增删改操作，从库负责处理查询">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ShardingSphere5">
-<meta property="og:url" content="http://example.com/2023/11/28/ShardingSphere5/index.html">
-<meta property="og:site_name" content="codingkazuha">
+<meta property="og:url" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/index.html">
+<meta property="og:site_name" content="codingkazuha的blog">
 <meta property="og:description" content="第01章 高性能架构模式互联网业务兴起之后，海量用户加上海量数据的特点，单个数据库服务器已经难以满足业务需要，必须考虑数据库集群的方式来提升性能。高性能数据库集群的第一种方式是“读写分离”，第二种方式是“数据库分片” 1、读写分离架构读写分离原理：读写分离的基本原理是将数据库读写操作分散到不同的节点上，下面是其基本架构图：  读写分离的基本实现：  主库负责处理事务性的增删改操作，从库负责处理查询">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/362d22168bf344687ec0c206aa115807.jpg">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/image-20220804223138651.png">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/6e7d7bd54d7a4eb67918080863d354d7.png">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/2ccafe41de9bd7f8dec4658f004310d6.png">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/71f41d46cc5c0405f4d4dc944b4350c9.jpg">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/image-20220804221855449.png">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/136bc2f01919edcb8271df6f7e71af40.jpg">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/image-20220804222212087.png">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/image-20220804223321167.png">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/f8d538f9201e3ebee37dfdcd1922e9df.jpg">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/2a2dba7f07581fd055d9cd5a3aa8388e.jpg">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/image-20220804195402870.png">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/image-20220804195432673.png">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/image-20220714133617856.png">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/image-20220807183231101.png">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/0.08703112216569037.png">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/image-20220804191852164.png">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/image-20220715000533951.png">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/image-20220714235426120.png">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/image-20220715004850504.png">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/image-20220807232456342.png">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/image-20220810163534068.png">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/image-20220808033239206.png">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/image-20220819152009158.png">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/image-20220819152009158.png">
-<meta property="og:image" content="http://example.com/2023/11/28/ShardingSphere5/image-20220819151154763.png">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/362d22168bf344687ec0c206aa115807.jpg">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/image-20220804223138651.png">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/6e7d7bd54d7a4eb67918080863d354d7.png">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/2ccafe41de9bd7f8dec4658f004310d6.png">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/71f41d46cc5c0405f4d4dc944b4350c9.jpg">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/image-20220804221855449.png">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/136bc2f01919edcb8271df6f7e71af40.jpg">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/image-20220804222212087.png">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/image-20220804223321167.png">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/f8d538f9201e3ebee37dfdcd1922e9df.jpg">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/2a2dba7f07581fd055d9cd5a3aa8388e.jpg">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/image-20220804195402870.png">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/image-20220804195432673.png">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/image-20220714133617856.png">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/image-20220807183231101.png">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/0.08703112216569037.png">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/image-20220804191852164.png">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/image-20220715000533951.png">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/image-20220714235426120.png">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/image-20220715004850504.png">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/image-20220807232456342.png">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/image-20220810163534068.png">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/image-20220808033239206.png">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/image-20220819152009158.png">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/image-20220819152009158.png">
+<meta property="og:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/image-20220819151154763.png">
 <meta property="article:published_time" content="2023-11-28T09:34:52.000Z">
-<meta property="article:modified_time" content="2023-11-29T01:48:35.092Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2023-11-29T07:05:18.052Z">
+<meta property="article:author" content="kazuha">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2023/11/28/ShardingSphere5/362d22168bf344687ec0c206aa115807.jpg">
+<meta name="twitter:image" content="https://codingkazuha.github.io/2023/11/28/ShardingSphere5/362d22168bf344687ec0c206aa115807.jpg">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
   
-  <title>ShardingSphere5 - codingkazuha</title>
+  
+  <title>ShardingSphere5 - codingkazuha的blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -101,7 +103,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"😎","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"codingkazuha.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"😎","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"vqhjj1YcDsB7T20EGY2bmNnQ-gzGzoHsz","app_key":"cP6kJVYlzHohJoz6HnSM2213","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -111,6 +113,35 @@
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
   
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
 
 
   
@@ -808,13 +839,13 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>ShardingSphere5</div>
-      <div>http://example.com/2023/11/28/ShardingSphere5/</div>
+      <div>https://codingkazuha.github.io/2023/11/28/ShardingSphere5/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>John Doe</div>
+          <div>kazuha</div>
         </div>
       
       
@@ -852,9 +883,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/11/28/JUC/" title="JUC">
+                      <a href="/2023/11/28/Summary/" title="Summary">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">JUC</span>
+                        <span class="hidden-mobile">Summary</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -862,8 +893,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/11/28/Summary/" title="Summary">
-                        <span class="hidden-mobile">Summary</span>
+                      <a href="/2023/11/28/JVM/" title="JVM">
+                        <span class="hidden-mobile">JVM</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -874,6 +905,15 @@
             </div>
 
             
+  
+  
+    <article id="comments" lazyload>
+      
+
+    </article>
+  
+
+
           </article>
         </div>
       </div>
@@ -1002,6 +1042,30 @@
     setInterval("createtime()",250);
     </script>
   </div>
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
   
   
   
@@ -1149,7 +1213,11 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
+  <script defer src="/js/leancloud.js" ></script>
+
   <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
