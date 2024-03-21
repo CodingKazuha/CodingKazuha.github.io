@@ -263,6 +263,105 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2024/03/21/%E9%9D%A2%E7%BB%8F%E6%95%B4%E7%90%86/" target="_self">
+          面经整理
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/03/21/%E9%9D%A2%E7%BB%8F%E6%95%B4%E7%90%86/" target="_self">
+        <div>
+          Redis缓存穿透,怎么解决嗯~~，我想一下 缓存穿透是指查询一个一定不存在的数据，如果从存储层查不到数据则不写入缓存，这将导致这个不存在的数据每次请求都要到 DB 去查询，可能导致 DB 挂掉。这种情况大概率是遭到了攻击。 解决方案的话，我们通常都会用布隆过滤器来解决它 布隆过滤器嗯，是这样~ 布隆过滤器主要是用于检索一个元素是否在一个集合中。我们当时使用的是redisson实现的布隆过滤器。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-03-21 14:01" pubdate>
+              2024-03-21
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/03/18/OpenAI/" target="_self">
+          OpenAI
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/03/18/OpenAI/" target="_self">
+        <div>
+          项目部署购买京东云服务器，选择centos7.9，服务器至少要求2c4g：  使用Temius连接服务器，配置docker等环境：  配置docker： 12345678910111213#查看系统的内核版本uname -r#yum 更新到最新版本sudo yum update#安装Docker所需的依赖包sudo yum install -y yum-utils device-mapper-pe
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-03-18 13:34" pubdate>
+              2024-03-18
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/03/17/%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E5%90%88%E9%9B%86/" target="_self">
+          面试问题合集
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/03/17/%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E5%90%88%E9%9B%86/" target="_self">
+        <div>
+          
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-03-17 12:53" pubdate>
+              2024-03-17
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2024/03/16/%E9%BB%91%E9%A9%AC%E9%9D%A2%E7%BB%8F/" target="_self">
           黑马面经
         </a>
@@ -470,105 +569,6 @@
       <a class="index-excerpt index-excerpt__noimg" href="/2023/11/28/Design%20Pattern/" target="_self">
         <div>
           23种设计模式 创建者模式：单例，原型，工厂方法，抽象工厂，建造者 结构型模式：代理，适配器，桥接，装饰，外观，享元，组合 行为型模式：模板方法，策略，命令，职责链，状态， 观察者，中介者，迭代器，访问者，备忘录，解释器  UML用例图，类图，对象图，状态图，活动图，时序图，协作图，构件图，部署图 类与类之间的关系包括关联关系，聚合关系，组合关系，依赖关系，继承关系，实现关系  关联关系： 单向关
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-11-28 17:34" pubdate>
-              2023-11-28
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/11/28/Daily/" target="_self">
-          LeetCode每日一题
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/11/28/Daily/" target="_self">
-        <div>
-          Leetcode049 字母异位词分组利用 stream 的 groupingBy 算子 1234567891011121314151617181920212223242526272829    /**     * 给你一个字符串数组，请你将 字母异位词 组合在一起。可以按任意顺序返回结果列表。     * 字母异位词 是由重新排列源单词的所有字母得到的一个新单词。     *      * 示例
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-11-28 17:34" pubdate>
-              2023-11-28
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/11/28/JVM/" target="_self">
-          JVM
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/11/28/JVM/" target="_self">
-        <div>
-          类加载器子系统的作用 类加载器子系统负责从文件系统或者文件中心加载Class文件，class文件在文件开头有特定的文件标识。 ClassLoader只负责class文件的加载，至于它是否可以运行，则由Execution Engine决定。加载的类信息存放于一块称为方法区的内存空间。除了类的信息外，方法区中还会存放运行时常量池信息，可能还包括字符串字面量和数字常量（这部分常量信息是Class文件中常
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-11-28 17:34" pubdate>
-              2023-11-28
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/11/28/JUC/" target="_self">
-          JUC
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/11/28/JUC/" target="_self">
-        <div>
-          https://juejin.cn/post/6961307588352802846 创建多线程的两种方式：1. 继承Thread类，2. 实现runable接口 2.1 继承Thread类的方式： 创建一个继承于Thread类的子类 重写Thread类的run() –&gt; 将此线程执行的操作声明在run()中 创建Thread类的子类的对象 通过此对象调用start()：1. 启动当前线程
         </div>
       </a>
 
